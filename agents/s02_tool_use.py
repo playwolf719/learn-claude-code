@@ -17,6 +17,11 @@ from pathlib import Path
 from anthropic import Anthropic
 from dotenv import load_dotenv
 
+import os
+os.environ.pop("http_proxy", None)
+os.environ.pop("https_proxy", None)
+os.environ.pop("HTTP_PROXY", None)
+os.environ.pop("HTTPS_PROXY", None)
 load_dotenv(override=True)
 
 if os.getenv("ANTHROPIC_BASE_URL"):
@@ -122,10 +127,9 @@ def normalize_messages(messages: list) -> list:
             clean["content"] = msg["content"]
         elif isinstance(msg.get("content"), list):
             clean["content"] = [
-                {k: v for k, v in block.items()
+                {k: v for k, v in (block if isinstance(block, dict) else block.model_dump()).items()
                  if not k.startswith("_")}
                 for block in msg["content"]
-                if isinstance(block, dict)
             ]
         else:
             clean["content"] = msg.get("content", "")
