@@ -1,0 +1,21 @@
+{
+  "hooks": {
+    "SessionStart": [
+      {
+        "command": "echo '[SessionStart] Agent 启动了！'"
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "bash",
+        "command": ".venv/bin/python demo_hooks/pre_bash_hook.py"
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "*",
+        "command": ".venv/bin/python demo_hooks/post_log_hook.py"
+      }
+    ]
+  }
+}
