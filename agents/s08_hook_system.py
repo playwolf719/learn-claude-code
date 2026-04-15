@@ -31,10 +31,6 @@ from pathlib import Path
 from anthropic import Anthropic
 from dotenv import load_dotenv
 
-os.environ.pop("http_proxy", None)
-os.environ.pop("https_proxy", None)
-os.environ.pop("HTTP_PROXY", None)
-os.environ.pop("HTTPS_PROXY", None)
 load_dotenv(override=True)
 
 if os.getenv("ANTHROPIC_BASE_URL"):

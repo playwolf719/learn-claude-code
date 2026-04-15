@@ -8,3 +8,14 @@
 do a code review of agents/s05_skill_loading.py
 
 ```
+
+
+## 去除代理
+
+```python
+import os
+os.environ.pop("http_proxy", None)
+os.environ.pop("https_proxy", None)
+os.environ.pop("HTTP_PROXY", None)
+os.environ.pop("HTTPS_PROXY", None)
+```
